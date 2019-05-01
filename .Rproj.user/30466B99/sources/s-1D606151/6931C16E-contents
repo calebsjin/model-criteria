@@ -1,0 +1,77 @@
+---
+date: "Apr 30, 2019"
+header-includes:
+- \usepackage{bbm}
+- \usepackage{amsmath}
+- \usepackage{graphicx}
+- \usepackage{caption}
+- \usepackage{bm}
+- \usepackage{multirow}
+- \usepackage{float}
+- \usepackage{color}
+- \usepackage{amssymb}
+- \usepackage{amsthm}
+output:
+  html_document: default
+---
+\newcommand\pr{{\rm pr}}
+\newcommand\E{{\rm E}}
+\newcommand\V{{\rm Var}}
+\newcommand\uA{{\bf A}}
+\newcommand\ua{{\bf a}}
+\newcommand\uB{{\bf B}}
+\newcommand\ub{{\bf b}}
+\newcommand\uC{{\bf C}}
+\newcommand\uc{{\bf c}}
+\newcommand\uD{{\bf D}}
+\newcommand\ud{{\bf d}}
+\newcommand\ue{{\bf e}}
+\newcommand\uE{{\bf E}}
+\newcommand\uf{{\bf f}}
+\newcommand\uh{{\bf h}}
+\newcommand\ug{{\bf g}}
+\newcommand\uI{{\bf I}}
+\newcommand\uK{{\bf K}}
+\newcommand\um{{\bf m}}
+\newcommand\uM{{\bf M}}
+\newcommand\T{{\bf T}}
+\newcommand\bO{{\bf O}}
+\newcommand\bP{{\bf P}}
+\newcommand\uQ{{\bf Q}}
+\newcommand\uU{{\bf U}}
+\newcommand\uv{{\bf v}}
+\newcommand\uV{{\bf V}}
+\newcommand\uS{{\bf S}}
+\newcommand\uu{{\bf u}}
+\newcommand\uw{{\bf w}}
+\newcommand\uW{{\bf W}}
+\newcommand\uH{{\bf H}}
+\newcommand\uX{{\bf X}}
+\newcommand\ux{{\bf x}}
+\newcommand\uY{{\bf Y}}
+\newcommand\uy{{\bf y}}
+\newcommand\uZ{{\bf Z}}
+\newcommand\uz{{\bf z}}
+\newcommand\0{{\boldsymbol 0}}
+\newcommand\1{{\boldsymbol 1}}
+\newcommand\ubeta{{\boldsymbol \beta}}
+\newcommand\btau{{\boldsymbol \tau}}
+\newcommand\bg{{\boldsymbol \gamma}}
+\newcommand\ueta{{\boldsymbol \eta}}
+\newcommand\bpi{{\boldsymbol \pi}}
+\newcommand\uxi{{\boldsymbol \xi}}
+\newcommand\utheta{{\boldsymbol \theta}}
+\newcommand\umu{{\boldsymbol \mu}}
+\newcommand\uepsilon{{\boldsymbol \epsilon}}
+\newcommand\bOmega{{\boldsymbol\Omega}}
+\newcommand\uSigma{{\boldsymbol \Sigma}}
+\newcommand\uPsi{{\boldsymbol \Psi}}
+\newcommand\bLam{{\bf \Lambda}}
+\newcommand\ualpha{{\boldsymbol \alpha}}
+\newcommand\usigma{{\boldsymbol \sigma}}
+\newcommand\uphi{{\boldsymbol \phi}}
+\newcommand\nbd{{\rm nbd}}
+\newcommand\diag{{\rm diag}}
+# R$^2$ {#R2}
+
+

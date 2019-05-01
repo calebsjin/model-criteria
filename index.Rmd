@@ -1,0 +1,142 @@
+--- 
+title: "Model Selection Criteria"
+author: "Caleb Jin"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+header-includes:
+- \usepackage{bbm}
+- \usepackage{amsmath}
+- \usepackage{graphicx}
+- \usepackage{caption}
+- \usepackage{bm}
+- \usepackage{multirow}
+- \usepackage{float}
+- \usepackage{color}
+- \usepackage{amssymb}
+- \usepackage{amsthm}
+---
+\newcommand\pr{{\rm pr}}
+\newcommand\E{{\rm E}}
+\newcommand\V{{\rm Var}}
+\newcommand\uA{{\bf A}}
+\newcommand\ua{{\bf a}}
+\newcommand\uB{{\bf B}}
+\newcommand\ub{{\bf b}}
+\newcommand\uC{{\bf C}}
+\newcommand\uc{{\bf c}}
+\newcommand\uD{{\bf D}}
+\newcommand\ud{{\bf d}}
+\newcommand\ue{{\bf e}}
+\newcommand\uE{{\bf E}}
+\newcommand\uf{{\bf f}}
+\newcommand\uh{{\bf h}}
+\newcommand\ug{{\bf g}}
+\newcommand\uI{{\bf I}}
+\newcommand\uK{{\bf K}}
+\newcommand\um{{\bf m}}
+\newcommand\uM{{\bf M}}
+\newcommand\T{{\bf T}}
+\newcommand\bO{{\bf O}}
+\newcommand\uP{{\bf P}}
+\newcommand\uQ{{\bf Q}}
+\newcommand\uU{{\bf U}}
+\newcommand\uv{{\bf v}}
+\newcommand\uV{{\bf V}}
+\newcommand\uS{{\bf S}}
+\newcommand\uu{{\bf u}}
+\newcommand\uw{{\bf w}}
+\newcommand\uW{{\bf W}}
+\newcommand\uH{{\bf H}}
+\newcommand\uX{{\bf X}}
+\newcommand\ux{{\bf x}}
+\newcommand\uY{{\bf Y}}
+\newcommand\uy{{\bf y}}
+\newcommand\uZ{{\bf Z}}
+\newcommand\uz{{\bf z}}
+\newcommand\0{{\boldsymbol 0}}
+\newcommand\1{{\boldsymbol 1}}
+\newcommand\ubeta{{\boldsymbol \beta}}
+\newcommand\btau{{\boldsymbol \tau}}
+\newcommand\bg{{\boldsymbol \gamma}}
+\newcommand\ueta{{\boldsymbol \eta}}
+\newcommand\bpi{{\boldsymbol \pi}}
+\newcommand\uxi{{\boldsymbol \xi}}
+\newcommand\utheta{{\boldsymbol \theta}}
+\newcommand\umu{{\boldsymbol \mu}}
+\newcommand\uepsilon{{\boldsymbol \epsilon}}
+\newcommand\bOmega{{\boldsymbol\Omega}}
+\newcommand\uSigma{{\boldsymbol \Sigma}}
+\newcommand\uPsi{{\boldsymbol \Psi}}
+\newcommand\bLam{{\bf \Lambda}}
+\newcommand\ualpha{{\boldsymbol \alpha}}
+\newcommand\usigma{{\boldsymbol \sigma}}
+\newcommand\uphi{{\boldsymbol \phi}}
+\newcommand\nbd{{\rm nbd}}
+\newcommand\diag{{\rm diag}}
+
+# Prerequisites
+
+Consider a multiple linear regression model as follows:
+\begin{eqnarray*}
+\uy=\uX\ubeta + \uepsilon,
+\end{eqnarray*}
+where $\uy=(y_1,y_2,\dots,y_n)^{\T}$ is the $n$-dimensional response vector, $\uX=(\ux_1,\ux_2, \dots, \ux_n)^{\T}$ is the $n\times p$ design matrix, and $\uepsilon \sim \mathcal{N}_n(\0,\sigma^2\uI_n)$. We assume that $p<n$ and $\uX$ is full rank. 
+
+By the method of MLE, we have 
+\begin{eqnarray*}
+&&\hat\ubeta=(\uX^{\T}\uX)^{-1}\uX^{\T}\uy\\
+&&{\hat\sigma}^2 = \frac{SSE}{n}=\frac{||\uy-\uX\hat\ubeta||^2}{n} = \frac{\uy^{\T}(\uI-\uH)\uy}{n} =
+\frac{\uy^{\T}\uP\uy}{n},
+\end{eqnarray*}
+where $\uP = \uI-\uH; \uH = \uX(\uX^{\T}\uX)^{-1}\uX^{\T}$.
+
+## Bias-variance tradeoff
+
+According to [wiki]("https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff"):
+
+>In statistics and machine learning, the bias–variance tradeoff is the property of a set of predictive models whereby models with a lower bias in parameter estimation have a higher variance of the parameter estimates across samples, and vice versa. 
+>
+>Models with low bias are usually more complex (e.g. higher-order regression polynomials), enabling them to represent the training set more accurately. In the process, however, they may also represent a large noise component in the training set, making their predictions less accurate - despite their added complexity. In contrast, models with higher bias tend to be relatively simple (low-order or even linear regression polynomials) but may produce lower variance predictions when applied beyond the training set.
+
+## Bias–variance decomposition of mean squared error (MSE):
+
+We assume $\uy = f(x) + \varepsilon$, where $\mathbb{E}(\varepsilon)=0$ and $\text{Var}(\varepsilon)=\sigma^2$. Our goal is to find a function $\hat f(x)$ that makes MSE of $\hat f$, $\mathbb{E}\{(\uy-\hat f)^{\T}(\uy-\hat f)\}$, minimum. 
+
+The Bias-Variance decomposition of MSE proceeds as follows: 
+\begin{eqnarray*}
+&&\mathbb{E}\{(\uy-\hat f)^{\T}(\uy-\hat f)\} = \{\mathbb{E}(\uy-\hat f)\}^{\T}\mathbb{E}(\uy-\hat f) + \text{Var}(\uy-\hat f)\\
+&=&||\text{Bias}(\hat f)||^2 + \text{Var}(\uy)+\text{Var}(\hat f) - 2\text{cov}(\uy,\hat f)\\
+&=& ||\text{Bias}(\hat f)||^2 +\text{Var}(\hat f) + \sigma^2, 
+\end{eqnarray*}
+where 
+\begin{eqnarray*}\text{cov}(\uy,\hat f) 
+&=& \mathbb{E}(\uy\hat f) - \mathbb{E}(\uy)\mathbb{E}(\hat f)\\
+&=& \mathbb{E}[(f+\varepsilon)\hat f] - \mathbb{E}(f+\varepsilon)\mathbb{E}(\hat f)\\
+&=& f\mathbb{E}(\hat f) + \mathbb{E}(\varepsilon\hat f) - f\mathbb{E}(\hat f)\\
+&=&\mathbb{E}(\varepsilon\hat f)\\
+&=&0,
+\end{eqnarray*}
+since $\varepsilon \bot \hat f$ or they are independent. (<span style="color:red">*Question* </span>:  why independent implies $\varepsilon \bot \hat f$, which implies $\mathbb{E}(\varepsilon\hat f)=0$).
+
+Bias-variance tradeoff
+
+ + models including many covariates leads to have low bias but high variance.
+ + models including few covariates leads to high bias but low variance. 
+
+Hence, we need criteria that both take in account model complexity (number of predictors) and quality of fit. 
+
+## Structure of my note
+
+I plan to introduce model selection criteria from well-known methods, such as BIC, and methods from papers. I will update the items in the following list when I am done one item:
+
+- [x] $R^2$
+- [ ] Mallows $C_p$
+- [ ] AIC
+- [ ] BIC
+- [ ] DIC
+- [ ] EBIC
